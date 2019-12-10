@@ -48,18 +48,18 @@ router.post('/:id/upload',upload.single('myImage'),async function(req,res,next){
 
 })
 
-// router.get('/image',(req,res)=>{
-//        db.Image.find({}).then(data=>res.send(data)).catch(err=>console.log(err))
-// })
-// router.get('/user',(req,res)=>{
-//         db.User.find({})
-//            .then(data=>res.send(data))
-//            .catch(err=>console.log(err))
-// })
+router.get('/image',(req,res)=>{
+       db.Image.find({}).then(data=>res.send(data)).catch(err=>console.log(err))
+})
+router.get('/user',(req,res)=>{
+        db.User.find({})
+           .then(data=>res.send(data))
+           .catch(err=>console.log(err))
+})
 
-// router.get('/user/:id',(req,res)=>{
-//             console.log("hello");
-//             console.log("hello");
-//            db.User.findById(req.params.id).then(data=>res.send(data)).catch(err=>console.log(err))
-// })
+router.get('/user/:id',(req,res)=>{
+            console.log("hello");
+            console.log("hello");
+           db.User.findById(req.params.id).then(data=>res.send(data)).catch(err=>console.log(err))
+})
 module.exports = router;
