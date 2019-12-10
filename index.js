@@ -16,7 +16,7 @@ const errorHandler = require('./handlers/err')
   app.use(morgan('tiny'));
 
   app.use('/api',authUser);
-
+  app.use('/api',rentRouter)
 
   app.use(function(req,res,next){
     let err = new Error("not found");
