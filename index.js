@@ -25,6 +25,6 @@ const errorHandler = require('./handlers/err')
 })
 
 app.use(errorHandler);
-  app.listen(process.env.PORT);
+  app.listen(process.env.PORT || 4000);
 
     
