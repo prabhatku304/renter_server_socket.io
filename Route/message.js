@@ -1,7 +1,7 @@
 const db    =   require('../models');
 const express =  require('express');
 const router =  express.Router();
-const {addMessage}  =  require('../handlers/message')
+const {addMessage,oldMessage}  =  require('../handlers/message')
 
 
 
@@ -16,5 +16,6 @@ router.get('/messages',async (req,res,next)=>{
 })
 
 router.post("/:id/message",addMessage);
+router.get("/:id/message",oldMessage);
 
 module.exports = router;

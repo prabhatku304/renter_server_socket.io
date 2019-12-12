@@ -19,7 +19,8 @@ exports.addMessage = async function (req,res,next){
 exports.oldMessage = async function(req,res,next){
                 try{
                     let user = await db.User.findById(req.params.id);
-                    let message = await db.Message.findById(user.message);
+                    console.log(user.message)
+                    let message =   await db.Message.find({'_id':user.message});
                     res.send(message);
                     return next();
                 }catch(err){
