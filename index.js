@@ -5,6 +5,8 @@ const express     =    require('express'),
       bodyParser  =    require('body-parser'),
       morgan      =    require('morgan'),
       cors        =    require('cors'),
+      socketIO    =    require('socket.io'),
+      http        =    require('http'),
       app         =    express();
 
 const authUser   =    require('./Route/auth');
@@ -16,7 +18,20 @@ const errorHandler = require('./handlers/err')
   app.use(morgan('tiny'));
 
   app.use('/api',authUser);
-  app.use('/api',rentRouter)
+  app.use('/api',rentRouter);
+
+  let server = http.createServer(app);
+  let io = socketIO(server);
+
+  io.on("connection",(socket)=>{
+    console.log("connection success");
+    socket.on("join",(msg)=>{
+      console.log(msg.temp);
+    })
+     socket.on('disconnect',()=>{
+       console.log("dissconect")
+     })
+  })
 
   app.use(function(req,res,next){
     let err = new Error("not found");
@@ -25,6 +40,6 @@ const errorHandler = require('./handlers/err')
 })
 
 app.use(errorHandler);
-  app.listen(process.env.PORT || 4000);
+  server.listen(process.env.PORT || 4000);
 
     
