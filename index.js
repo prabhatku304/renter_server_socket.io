@@ -12,13 +12,15 @@ const express     =    require('express'),
 const authUser   =    require('./Route/auth');
 const newMessage  =   require('./Route/message')
 const rentRouter  =   require('./Route/rent');
-const errorHandler = require('./handlers/err')
+const errorHandler = require('./handlers/err');
+const messageRouter =  require('./Route/message')
   app.use(bodyParser.json());
   app.use(cors());
   app.use(morgan('tiny'));
 
   app.use('/api',authUser);
   app.use('/api',rentRouter);
+  app.use('/api',messageRouter);
 
   let server = http.createServer(app);
   let io = socketIO(server);

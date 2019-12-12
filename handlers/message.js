@@ -7,8 +7,9 @@ exports.addMessage = async function (req,res,next){
                              user:req.params.id
                       });
                        let user = await db.User.findById(req.params.id);
-                       user.message.push(messages._id);
-                       await user.save();
+                      await user.message.push(messages._id);
+                         user.save();
+                         res.send(user)
                        return next()
                   }catch(err){
                       return next(err);

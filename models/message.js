@@ -8,9 +8,7 @@ const messageSchema = new mongoose.Schema({
                   type:mongoose.Schema.Types.ObjectId,
                   ref:"User"
               },
-              date:{
-                  type:Date.now
-              }
+              
 })
 
 const Message = mongoose.model('Message',messageSchema);
