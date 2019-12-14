@@ -24,9 +24,7 @@ const userSchema = new mongoose.Schema({
                 mobile:{
                     type:Number
                 },
-                id_card:{
-                    type:String
-                },
+                idCard:[],
                 date:{
                     type:Date
                 },

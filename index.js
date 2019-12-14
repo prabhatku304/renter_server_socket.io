@@ -13,7 +13,8 @@ const authUser   =    require('./Route/auth');
 const newMessage  =   require('./Route/message')
 const rentRouter  =   require('./Route/rent');
 const errorHandler = require('./handlers/err');
-const messageRouter =  require('./Route/message')
+const messageRouter =  require('./Route/message');
+const db            =  require('./models')
   app.use(bodyParser.json());
   app.use(cors());
   app.use(morgan('tiny'));
@@ -21,14 +22,30 @@ const messageRouter =  require('./Route/message')
   app.use('/api',authUser);
   app.use('/api',rentRouter);
   app.use('/api',messageRouter);
+  app.use(express.static('public/uploads'));
 
   let server = http.createServer(app);
   let io = socketIO(server);
 
-  io.on("connection",(socket)=>{
+  io.on("connection",async (socket)=>{
     console.log("connection success");
-    socket.on("join",(msg)=>{
-      console.log(msg.temp);
+    
+    socket.on("join",async (msg)=>{
+   
+     try{
+      let newmsg = msg.temp;
+      if(newmsg.newMessage && newmsg.newMessage.user._id){
+         let user = await db.User.findById(newmsg.newMessage.user._id);
+         let stringMessage = JSON.stringify(newmsg.newMessage);
+         let message = await db.Message.create({user:user._id,text:stringMessage});
+         await user.message.push(message._id);
+        await user.save();
+         
+      }
+     }catch(err){
+       console.log(err);
+     }
+        
     })
      socket.on('disconnect',()=>{
        console.log("dissconect")
