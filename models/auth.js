@@ -32,6 +32,7 @@ const userSchema = new mongoose.Schema({
                     type:mongoose.Schema.Types.ObjectId,
                     ref:"Rent"
                 }],
+                rentHistory:[],
                 message:[{
                     type:mongoose.Schema.Types.ObjectId,
                     ref:"Message"
