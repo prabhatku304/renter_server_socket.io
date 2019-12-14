@@ -34,7 +34,7 @@ router.post('/:id/upload',upload.single('myImage'),async function(req,res,next){
         )
         const host = req.host;
         console.log(host)
-        const filePath = req.protocol + "://" + host  + req.file.filename;
+        const filePath = req.protocol + "://" + host + "/" + req.file.filename;
 
           let userFind = await db.User.findById(req.params.id);
           console.log(userFind)
