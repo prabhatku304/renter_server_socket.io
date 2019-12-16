@@ -33,7 +33,10 @@ exports.signIn = async function(req,res,next){
        try{
            let user = await db.User.findOne({username:req.body.username});
            let {id,username,email} = user;
-           let isMatch = user.comparePassword(req.body.password);
+         
+           let isMatch = await user.comparePassword(req.body.password);
+          console.log(req.body.password)
+           
            if(isMatch){
                let token = jwt.sign({
                    id,
@@ -54,9 +57,6 @@ exports.signIn = async function(req,res,next){
            }
 
        }catch(err){
-           return next({
-               status:400,
-               message:err.message
-           })
+           return next(err)
        }
 }
