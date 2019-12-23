@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 
 const rentSchema = new mongoose.Schema({
-            amount:{type:Number}
-         
+            amount:{type:Number},
+            user:{
+                type:mongoose.Schema.Types.ObjectId,
+                ref:"User"
+            }
+            
             
 })
 
