@@ -4,6 +4,7 @@ const express = require('express');
 
 
 
+
  router.post('/:id/rent',RentHandler);
 router.get('/:id/rent/history',RentHistory)
 
