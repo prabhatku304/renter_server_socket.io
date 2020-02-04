@@ -1,4 +1,4 @@
-const stripe = require('stripe')("sk_test_veBHxIl8huyM1xJ7XYu6Z8Wx");
+const stripe = require('stripe')("sk_live_jOQyiYtAu6uolrkvR9EJ70qh");
 const db = require('../models');
 
 exports.RentHandler = async (req,res,next)=>{
@@ -6,19 +6,32 @@ exports.RentHandler = async (req,res,next)=>{
                      
                      let user = await db.User.findById(req.params.id);
                      let newRent = await db.Rent.create({amount:req.body.amount,user:req.params.id});
-                     console.log(newRent)
-                     stripe.customer.create({
-                         name:req.body.name,
-                         source:req.body.token
-                     }).then(customer=>{
-                         stripe.charge.create({
-                             amount:req.body.amount,
-                             currency:"inr",
-                             source:"tok_mastercard",
-                             customer:customer.id
-                         }).then(data=>res.send(data))
-                          .catch(err=>console.log(err))
-                     }).catch(err=>console.log(err))
+                  
+                    stripe.customers.create({
+                      
+                        email:req.body.email,
+                        source:req.body.id
+                    }).then(customer=>{
+                        console.log(customer)
+                        stripe.charges.create({
+                        amount:"1000",
+                        currency:"inr",
+                        customer:customer.id,
+                        description:"product purchased",
+                        shipping:{
+                            name:"prabhat kumar",
+                            address:{
+                                line1:"ramcharan tola mokama",
+                                city:"mokama",
+                                country:"IND",
+                                postal_code:'803302'
+                            }
+                        }
+                         }).then(data=>console.log(data))
+                       .catch(err=>console.log(err))
+                    }).catch(err=>console.log(err))
+                        
+                   
                      return next();
                }catch(err){
                    return next(err);
