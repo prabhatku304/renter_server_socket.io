@@ -33,6 +33,10 @@ const userSchema = new mongoose.Schema({
                     ref:"Rent"
                 }],
                 rentHistory:[],
+                rentDate:{
+                    type:mongoose.Schema.Types.ObjectId,
+                    ref:"UserPayDate"
+                },
                 message:[{
                     type:mongoose.Schema.Types.ObjectId,
                     ref:"Message"

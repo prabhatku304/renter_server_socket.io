@@ -1,18 +1,18 @@
 const mongoose =  require('mongoose');
 
 const userPaySchema =  new mongoose.Schema({
-                  jan:{type:String,default:"jan"},
-                  feb:{type:String,default:"feb"},
-                  mar:{type:String,default:"mar"},
-                  apr:{type:String,default:"apr"},
-                  may:{type:String,default:"may"},
-                  jun:{type:String,default:"jun"},
-                  jul:{type:String,default:"jul"},
-                  aug:{type:String,default:"aug"},
-                  sep:{type:String,default:"sep"},
-                  oct:{type:String,default:"oct"},
-                  nov:{type:String,default:"nov"},
-                  dec:{type:String,default:"dec"},
+                  jan:{type:Boolean,default:false},
+                  feb:{type:Boolean,default:false},
+                  mar:{type:Boolean,default:false},
+                  apr:{type:Boolean,default:false},
+                  may:{type:Boolean,default:false},
+                  jun:{type:Boolean,default:false},
+                  jul:{type:Boolean,default:false},
+                  aug:{type:Boolean,default:false},
+                  sep:{type:Boolean,default:false},
+                  oct:{type:Boolean,default:false},
+                  nov:{type:Boolean,default:false},
+                  dec:{type:Boolean,default:false},
                   
 
 })
