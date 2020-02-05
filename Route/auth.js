@@ -60,7 +60,7 @@ router.get('/user',(req,res)=>{
 router.get('/user/:id',(req,res)=>{
             console.log("hello");
             console.log("hello");
-          User.findById(req.params.id).then(data=>res.send(data)).catch(err=>console.log(err))
+          db.User.findById(req.params.id).then(data=>res.send(data)).catch(err=>console.log(err))
 })
 
 router.get("/check",(req,res)=>{res.send("check")})
