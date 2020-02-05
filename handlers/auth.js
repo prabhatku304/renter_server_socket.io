@@ -5,6 +5,11 @@ const jwt = require('jsonwebtoken');
 exports.signUp = async function(req,res,next){
                   try{
                       let newUser = await db.User.create(req.body);
+                      let newUserDate = await db.UserPayDate.create({});
+                      console.log(newUserDate)
+                      newUser.rentDate = newUserDate;
+                      newUser.save();
+
                       let {id,username,email} = newUser;
                       let token = jwt.sign({
                              id,

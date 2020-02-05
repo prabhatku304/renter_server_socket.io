@@ -2,12 +2,12 @@ const express = require('express');
  const router  = express.Router();
  const {RentHandler,RentHistory}   =  require('../handlers/rent')
 const stripe = require('stripe')("sk_live_jOQyiYtAu6uolrkvR9EJ70qh")
-const Razorpay = require('razorpay');
+// const Razorpay = require('razorpay');
 
-const instance = new Razorpay({
-    key_id:"",
-    key_secret:""
-})
+// const instance = new Razorpay({
+//     key_id:"",
+//     key_secret:""
+// })
 
  router.post('/:id/rent',RentHandler);
 router.get('/:id/rent/history',RentHistory)
@@ -44,16 +44,16 @@ router.post('/secret',async (req,res,next)=>{
        
 })
 
-router.post('/razorpay',async (req,res,next)=>{
-          try{
-                let amount = 5000;
-                const pay = await instance.payments.capture({customer_id,amount})
-                console.log(pay)
-                res.send(pay)
+// router.post('/razorpay',async (req,res,next)=>{
+//           try{
+//                 let amount = 5000;
+//                 const pay = await instance.payments.capture({customer_id,amount})
+//                 console.log(pay)
+//                 res.send(pay)
 
-          }catch(err){
-               console.log(err);
-          }
-})
+//           }catch(err){
+//                console.log(err);
+//           }
+// })
 
 module.exports = router;
