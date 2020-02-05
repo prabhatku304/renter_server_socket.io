@@ -1,4 +1,4 @@
-const stripe = require('stripe')("sk_live_jOQyiYtAu6uolrkvR9EJ70qh");
+const stripe = require('stripe')("");
 const db = require('../models');
 
 exports.RentHandler = async (req,res,next)=>{
