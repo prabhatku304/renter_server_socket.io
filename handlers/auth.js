@@ -8,7 +8,11 @@ exports.signUp = async function(req,res,next){
                       let newUserDate = await db.UserPayDate.create({});
                       console.log(newUserDate)
                       newUser.rentDate = newUserDate;
+                      newUserDate.user = newUser._id;
+                      newUserDate.save();
                       newUser.save();
+                      console.log(newUserDate)
+                      console.log(newUser)
 
                       let {id,username,email} = newUser;
                       let token = jwt.sign({

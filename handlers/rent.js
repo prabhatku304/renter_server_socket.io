@@ -41,9 +41,9 @@ exports.RentHandler = async (req,res,next)=>{
 exports.RentHistory = async (req,res,next)=>{
     try{
           
-          let user = await db.User.findById(req.params.id);
+          let UserPayDetails = await db.UserPayDate.findOne({user:req.params.id});
           
-          res.send(user.rent)
+          res.send(UserPayDetails)
           return next();
     }catch(err){
         return next(err);

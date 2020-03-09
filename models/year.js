@@ -13,6 +13,10 @@ const userPaySchema =  new mongoose.Schema({
                   oct:{type:Boolean,default:false},
                   nov:{type:Boolean,default:false},
                   dec:{type:Boolean,default:false},
+                  user:{
+                      type:mongoose.Schema.Types.ObjectId,
+                      ref:"User"
+                  }
                   
 
 })

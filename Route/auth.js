@@ -51,10 +51,12 @@ router.post('/:id/upload',upload.single('myImage'),async function(req,res,next){
 })
 
 
-router.get('/user',(req,res)=>{
-        db.User.find({})
-           .then(data=>res.send(data))
-           .catch(err=>console.log(err))
+router.get('/user',async(req,res)=>{
+        // db.User.find({})
+        //    .then(data=>res.send(data))
+        //    .catch(err=>console.log(err))
+        let data = await db.User.find({});
+        res.send(data) 
 })
 
 router.get('/user/:id',(req,res)=>{
@@ -64,4 +66,15 @@ router.get('/user/:id',(req,res)=>{
 })
 
 router.get("/check",(req,res)=>{res.send("check")})
+router.get('/:id/ispay',async (req,res)=>{
+         try{
+              let user = await db.User.findById(req.params.id);
+              let userDate = await db.UserPayDate(user.rentDate) ;
+              res.send(userDate);
+              return next();
+         }catch(err){
+             console.log(err)
+             return next(err)
+         }
+})
 module.exports = router;
