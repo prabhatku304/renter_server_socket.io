@@ -1,6 +1,7 @@
 const mongoose =  require('mongoose');
 
 const userPaySchema =  new mongoose.Schema({
+              PayMonth:{
                   jan:{type:Boolean,default:false},
                   feb:{type:Boolean,default:false},
                   mar:{type:Boolean,default:false},
@@ -12,7 +13,7 @@ const userPaySchema =  new mongoose.Schema({
                   sep:{type:Boolean,default:false},
                   oct:{type:Boolean,default:false},
                   nov:{type:Boolean,default:false},
-                  dec:{type:Boolean,default:false},
+                  dec:{type:Boolean,default:false},},
                   user:{
                       type:mongoose.Schema.Types.ObjectId,
                       ref:"User"

@@ -1,6 +1,6 @@
 const stripe = require('stripe')("");
 const db = require('../models');
-
+const _ = require('lodash')
 exports.RentHandler = async (req,res,next)=>{
                try{
                      
@@ -42,8 +42,7 @@ exports.RentHistory = async (req,res,next)=>{
     try{
           
           let UserPayDetails = await db.UserPayDate.findOne({user:req.params.id});
-          
-          res.send(UserPayDetails)
+          res.send(UserPayDetails.PayMonth)
           return next();
     }catch(err){
         return next(err);
