@@ -1,3 +1,5 @@
+require('dotenv').load;
+
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
@@ -52,11 +54,11 @@ router.post('/:id/upload',upload.single('myImage'),async function(req,res,next){
 
 
 router.get('/user',async(req,res)=>{
-        // db.User.find({})
-        //    .then(data=>res.send(data))
-        //    .catch(err=>console.log(err))
-        let data = await db.User.find({});
-        res.send(data) 
+    
+        db.User.find({})
+           .then(data=>res.send(data))
+           .catch(err=>console.log(err))
+      
 })
 
 router.get('/user/:id',(req,res)=>{
