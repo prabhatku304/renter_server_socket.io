@@ -64,6 +64,6 @@ const db            =  require('./models')
 })
 
 app.use(errorHandler);
-  server.listen(process.env.PORT || 4000);
+  server.listen( 4000);
 
     
