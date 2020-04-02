@@ -52,6 +52,11 @@ const db            =  require('./models')
      })
   })
 
+  app.get("/social-media/:id",(req,res,next)=>{
+          let data = req.params.id;
+          res.render('test.ejs',{data})
+  })
+
   app.use(function(req,res,next){
     let err = new Error("not found");
     err.status = 404;
@@ -59,6 +64,6 @@ const db            =  require('./models')
 })
 
 app.use(errorHandler);
-  server.listen(process.env.PORT || 4000);
+  server.listen( 4000);
 
     
